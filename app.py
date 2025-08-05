@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
 import json
@@ -42,5 +43,6 @@ def delete(post_id):
         save_posts(posts)  # ファイルに保存
     return redirect('/')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Renderが割り当てるポートを取得（なければ5000）
+    app.run(host="0.0.0.0", port=port, debug=True)
